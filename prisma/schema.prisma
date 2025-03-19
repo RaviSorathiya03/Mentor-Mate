@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id         String      @id @default(uuid())
+  firstName  String     
+  lastName   String
+  email      String      @unique
+  createdAt  DateTime    @default(now())
+  imageUrl   String? 
+  skills     Skills[]
+  schools    School[]
+  experiences Experience[]
+  achievements Achievement[]
+  follows      Follow[]        @relation("follow")
+  followings   Follow[]        @relation("following")
+  posts        Post[]
+  messagesSent  Message[]       @relation("sender")
+  messagesReceived Message[]    @relation("receiver")
+  referralsGiven  Referral[]    @relation("Giver")
+  referralsTaken  Referral[]    @relation("Taker")
+  communityMessages CommunityMessage[]
+  communityMemberships CommunityOnUser[]
+}
+
+model Skills{
+  id         String      @id  @default(uuid())
+  name       String    
+  experience String
+  foundation Foundation
+  userId     String 
+  user       User        @relation(fields: [userId], references: [id])
+}
+
+model School{
+  id         String      @id  @default(uuid())
+  name       String
+  location   String
+  description String
+  from       DateTime
+  to         DateTime
+  createdAt  DateTime    @default(now())
+  userId     String     
+  user       User        @relation(fields: [userId], references: [id])
+}
+
+
+model Experience{
+  id         String     @id @default(uuid())
+  name       String 
+  role       String
+  gitLink    String
+  startDate  DateTime
+  endDate    DateTime
+  userId     String
+  user       User       @relation(fields: [userId], references: [id])
+}
+
+model Achievement{
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  pdfLink     String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+}
+
+model Follow{
+  id           String    @id @default(uuid())
+  followId     String
+  follow       User      @relation("follow", fields: [followId], references: [id])
+  followingId  String
+  following    User      @relation("following", fields: [followingId], references: [id])
+  @@unique([followId, followingId])
+}
+
+model Post{
+  id         String    @id @default(uuid())
+  title      String
+  imageUrl   String
+  createdAt  DateTime  @default(now())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+}
+
+model Community{
+  id         String    @id @default(uuid())
+  name       String
+  imageUrl   String
+  createdAt  DateTime  @default(now())
+  members    CommunityOnUser[]
+  messages   CommunityMessage[]
+}
+
+model CommunityOnUser {
+  userId      String
+  communityId String
+  user        User      @relation(fields: [userId], references: [id])
+  community   Community @relation(fields: [communityId], references: [id])
+  @@id([userId, communityId])
+}
+
+model CommunityMessage{
+  id          String    @id @default(uuid())
+  message     String
+  createdAt   DateTime  @default(now())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  communityId String
+  community   Community @relation(fields: [communityId], references: [id])
+}
+
+model Referral{
+  id         String    @id @default(uuid())
+  userId     String
+  user       User      @relation("Giver", fields: [userId], references: [id])
+  referralId String
+  referral   User      @relation("Taker", fields: [referralId], references: [id])
+}
+
+model Message{
+  id         String    @id @default(uuid())
+  message    String
+  createdAt  DateTime  @default(now())
+  senderId   String
+  sender     User      @relation("sender", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User      @relation("receiver", fields: [receiverId], references: [id])
+}
+
+enum Foundation{
+  Beginner
+  Intermediate
+  Advanced
+}
