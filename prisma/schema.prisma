@@ -119,6 +119,7 @@ model CommunityMessage{
 model Referral{
   id         String    @id @default(uuid())
   userId     String
+  description String
   user       User      @relation("Giver", fields: [userId], references: [id])
   referralId String
   referral   User      @relation("Taker", fields: [referralId], references: [id])
