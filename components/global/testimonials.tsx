@@ -128,7 +128,7 @@ export default function Testimonials() {
                       </div>
                       <div className="flex-1">
                         <Quote className="h-10 w-10 text-primary/20 mb-4" />
-                        <p className="text-xl md:text-2xl italic mb-6">"{testimonials[current].quote}"</p>
+                        <p className="text-xl md:text-2xl italic mb-6">{testimonials[current].quote}</p>
                         <div>
                           <h4 className="text-lg font-semibold">{testimonials[current].name}</h4>
                           <p className="text-muted-foreground">{testimonials[current].role}</p>

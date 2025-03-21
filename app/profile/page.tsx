@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,7 +12,6 @@ import Link from "next/link"
 import { useUser } from "@clerk/nextjs"
 
 export default function ProfilePage() {
-  const router = useRouter()
   const user = useUser();
   const skills = [
     "React",
@@ -118,7 +115,7 @@ export default function ProfilePage() {
               <div className="flex flex-col items-center text-center">
                 <div className="relative mb-4">
                   <Avatar className="h-32 w-32">
-                    <AvatarImage src="/placeholder.svg?height=128&width=128" alt={user.user?.firstName!} />
+                    <AvatarImage src="/placeholder.svg?height=128&width=128" alt={""} />
                     <AvatarFallback className="text-4xl">{user?.user?.firstName!.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <Button size="icon" variant="outline" className="absolute bottom-0 right-0 h-8 w-8 rounded-full">

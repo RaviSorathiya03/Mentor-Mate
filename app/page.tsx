@@ -1,4 +1,3 @@
-import Navbar from "@/components/global/navbar"
 import Hero from "@/components/global/hero"
 import HowItWorks from "@/components/global/how-it-works"
 import Features from "@/components/global/features"

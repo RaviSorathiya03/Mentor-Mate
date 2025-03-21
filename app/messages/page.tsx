@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,11 +11,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Search, Send, Phone, Video, MoreHorizontal, PaperclipIcon, SmileIcon, MessageSquare } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { useUser } from "@clerk/nextjs"
 
 export default function MessagesPage() {
-  const { user } = useUser()
-  const router = useRouter()
   const [activeChat, setActiveChat] = useState(1)
   const [message, setMessage] = useState("")
 

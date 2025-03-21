@@ -36,7 +36,7 @@ export async function DELETE({params}: {
 }){
     try {
         const user = await currentUser();
-        if(!currentUser){
+        if(!user){
             return NextResponse.json({
                 message: "Something went wrong"
             }, {status: 400})

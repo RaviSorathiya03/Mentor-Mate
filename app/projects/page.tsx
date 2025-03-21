@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -25,9 +24,9 @@ import {
 import { Progress } from "@/components/ui/progress"
 
 export default function ProjectsPage() {
-  const router = useRouter()
+  
   const [searchQuery, setSearchQuery] = useState("")
-  const [activeTab, setActiveTab] = useState("my-projects")
+  const [ setActiveTab] = useState("my-projects")
 
   const myProjects = [
     {
@@ -193,7 +192,7 @@ export default function ProjectsPage() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-
+        {/*@ts-expect-error - this is of dynamic type  */}
         <Tabs defaultValue="my-projects" onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="my-projects">My Projects</TabsTrigger>
@@ -309,7 +308,7 @@ export default function ProjectsPage() {
                   <Github className="h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium">No projects yet</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    You haven't created any projects yet. Start by creating your first project.
+                    You haven&apos;t created any projects yet. Start by creating your first project.
                   </p>
                   <Button>
                     <Plus className="mr-2 h-4 w-4" />
@@ -418,8 +417,9 @@ export default function ProjectsPage() {
                   <Users className="h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium">No collaborations yet</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    You're not collaborating on any projects yet. Discover projects to contribute to.
+                    You&apos;re not collaborating on any projects yet. Discover projects to contribute to.
                   </p>
+                       {/*@ts-expect-error - this is of dynamic type  */}
                   <Button onClick={() => setActiveTab("discover")}>Discover Projects</Button>
                 </CardContent>
               </Card>

@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -27,7 +26,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export default function EventsPage() {
 
-  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState("")
   const [date, setDate] = useState<Date | undefined>(new Date())
   const [categoryFilter, setCategoryFilter] = useState("all")
@@ -506,7 +504,7 @@ export default function EventsPage() {
                     <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
                     <h3 className="text-lg font-medium">No registered events</h3>
                     <p className="text-sm text-muted-foreground mb-4">
-                      You haven't registered for any upcoming events yet.
+                      You haven&apos;t registered for any upcoming events yet.
                     </p>
                     <Button>Browse Events</Button>
                   </CardContent>

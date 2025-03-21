@@ -57,7 +57,9 @@ export async function GET(){
     }
 }
 
-export async function PUT(req: NextRequest, {params}: {params: {id: string}}){
+export async function PUT(req: NextRequest, {params}: {
+    params: {id: string}
+}){
     try {
         const user = await currentUser();
         const body = await req.json();
@@ -101,7 +103,7 @@ export async function DELETE({params}: {params: {id: string}}){
         })
 
         return NextResponse.json({
-            message :"Something went wrong"
+            achievement
         }, {status: 200})
     } catch (error) {
         console.log(error);

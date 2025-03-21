@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -18,7 +17,6 @@ import { Separator } from "@/components/ui/separator"
 import { useMobile } from "@/hooks/use-mobile"
 
 export default function MentorsPage() {
-  const router = useRouter()
   const isMobile = useMobile()
   const [searchQuery, setSearchQuery] = useState("")
 

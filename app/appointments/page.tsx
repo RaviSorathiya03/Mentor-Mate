@@ -1,14 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CalendarIcon, Clock, Video, MessageSquare, Calendar, ChevronLeft, ChevronRight, Plus } from 'lucide-react'
+import { Clock, Video, MessageSquare, Calendar, ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 import { Calendar as CalendarComponent } from "@/components/ui/calendar"
 import {
   Select,
@@ -21,9 +20,8 @@ import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 
 export default function AppointmentsPage() {
-  const router = useRouter()
   const [date, setDate] = useState<Date | undefined>(new Date())
-  const [view, setView] = useState("calendar")
+ 
 
 
   const upcomingSessions = [
@@ -185,7 +183,7 @@ export default function AppointmentsPage() {
                   <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium">No upcoming sessions</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    You don't have any mentorship sessions scheduled yet.
+                    You don&apos;t have any mentorship sessions scheduled yet.
                   </p>
                   <Button>Schedule a Session</Button>
                 </CardContent>
@@ -252,7 +250,7 @@ export default function AppointmentsPage() {
                   <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium">No past sessions</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    You haven't completed any mentorship sessions yet.
+                    You haven&apos;t completed any mentorship sessions yet.
                   </p>
                   <Button>Schedule Your First Session</Button>
                 </CardContent>

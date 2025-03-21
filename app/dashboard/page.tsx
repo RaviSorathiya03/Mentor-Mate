@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
 import DashboardLayout from "@/components/global/dashboard-layout"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -12,7 +10,6 @@ import Link from "next/link"
 
 export default function DashboardPage() {
   
-  const router = useRouter()
 
 
 
@@ -181,7 +178,7 @@ export default function DashboardPage() {
                   <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
                   <h3 className="text-lg font-medium">No upcoming sessions</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    You don't have any mentorship sessions scheduled yet.
+                    You don&apos;t have any mentorship sessions scheduled yet.
                   </p>
                   <Button asChild>
                     <Link href="/mentors">Find a Mentor</Link>
