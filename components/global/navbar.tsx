@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useClerk, SignInButton, UserButton } from "@clerk/nextjs"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useClerk, SignInButton, UserButton } from "@clerk/nextjs";
+import { useTheme } from "next-themes";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -14,21 +15,22 @@ const navItems = [
   { name: "Features", path: "/features" },
   { name: "Testimonials", path: "/testimonials" },
   { name: "Contact", path: "/contact" },
-]
+];
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
-  const { user } = useClerk()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const { user } = useClerk();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.header
@@ -69,11 +71,14 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+              {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+            </Button>
+
             {!user ? (
               <SignInButton mode="modal">
-                <Button variant="default" size="sm">
-                  Sign In
-                </Button>
+                <Button variant="default" size="sm">Sign In</Button>
               </SignInButton>
             ) : (
               <UserButton afterSignOutUrl="/" />
@@ -117,11 +122,18 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="pt-4 border-t">
+              {/* Theme Toggle for Mobile */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="w-full"
+              >
+                {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+              </Button>
               {!user ? (
                 <SignInButton mode="modal">
-                  <Button variant="default" size="sm" className="w-full">
-                    Sign In
-                  </Button>
+                  <Button variant="default" size="sm" className="w-full">Sign In</Button>
                 </SignInButton>
               ) : (
                 <div className="flex items-center justify-between">
@@ -134,6 +146,5 @@ export default function Navbar() {
         </motion.div>
       )}
     </motion.header>
-  )
+  );
 }
-
